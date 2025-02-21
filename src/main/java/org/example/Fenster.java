@@ -8,14 +8,17 @@ public class Fenster {
 
     public Fenster(Raum raum) {
         this.raum = raum;
+        this.offen = false;
     }
 
     public void oeffneFenster() {
         this.offen = true;
+        raum.regeleTemperatur();
     }
 
     public void schliesseFenster() {
         this.offen = false;
+        raum.regeleTemperatur();
     }
 
     public boolean istOffen() {
@@ -27,3 +30,8 @@ public class Fenster {
     }
 
 }
+
+/*
+Ein Raum kann mehrere Fenster haben, daher die Implementierung der List.
+Ein Fenster kann immer nur einem Raum zugeordnet sein, daher die "einfache" Variable namens "raum".
+ */

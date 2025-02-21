@@ -37,7 +37,7 @@ public class Raum {
 
     public void regeleTemperatur() {
 
-        if(hatOffeneFenster() == true) {
+        if(hatOffeneFenster() == true || zieltemperatur > thermometer.getTemperatur()) {
 
             for(int i = 0; i < heizungsListe.size(); i++) {
                 heizungsListe.get(i).schalteAus();
