@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Raum {
 
@@ -37,20 +36,27 @@ public class Raum {
 
     public void regeleTemperatur() {
 
-        if(hatOffeneFenster() == true || zieltemperatur > thermometer.getTemperatur()) {
-
-            for(int i = 0; i < heizungsListe.size(); i++) {
-                heizungsListe.get(i).schalteAus();
+        int aktuelleTemperatur = thermometer.getTemperatur();
+        if (hatOffeneFenster()) {
+            schalteHeizungenAus();
+        } else {
+            if (zieltemperatur > aktuelleTemperatur) {
+                schalteHeizungenAus();
+            } else {
+                schalteHeizungenEin();
             }
         }
-        else if(hatOffeneFenster() == false && zieltemperatur < thermometer.getTemperatur()) {
+    }
 
-            for(int j = 0; j < heizungsListe.size(); j++) {
-                heizungsListe.get(j).schalteEin();
-            }
+    private void schalteHeizungenEin() {
+        for(int j = 0; j < heizungsListe.size(); j++) {
+            heizungsListe.get(j).schalteEin();
         }
-        else {
-            return;
+    }
+
+    private void schalteHeizungenAus() {
+        for(int i = 0; i < heizungsListe.size(); i++) {
+            heizungsListe.get(i).schalteAus();
         }
     }
 
